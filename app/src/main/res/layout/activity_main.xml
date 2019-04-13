@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.musicbox.MainActivity"
+    android:orientation="vertical">
+
+    <!--Show Progress-->
+    <SeekBar
+        android:id="@+id/sb"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!--Show Current Progress-->
+        <TextView
+            android:id="@+id/tv_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="00:00"/>
+
+        <!--Show Total Length-->
+        <TextView
+            android:id="@+id/tv_total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="00:00"/>
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/play_service"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Play"/>
+
+    <Button
+        android:id="@+id/pause_service"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pause"/>
+
+    <!--<Button-->
+        <!--android:id="@+id/init_service"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Initialize"/>-->
+
+    <Button
+        android:id="@+id/exit_service"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Exit"/>
+
+</LinearLayout>
