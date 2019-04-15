@@ -25,7 +25,7 @@
 
         <!--Show Total Length-->
         <TextView
-            android:id="@+id/tv_total"
+            android:id="@+id/tv_duration"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -57,4 +57,14 @@
         android:layout_height="wrap_content"
         android:text="Exit"/>
 
+
+    <TextView
+        android:id="@+id/tv_position1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tv_position2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 </LinearLayout>
