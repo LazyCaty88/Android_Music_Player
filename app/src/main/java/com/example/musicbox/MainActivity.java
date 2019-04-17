@@ -1,5 +1,6 @@
 package com.example.musicbox;
 
+import android.annotation.SuppressLint;
 import android.app.Service;
 import android.content.ComponentName;
 import android.content.Intent;
@@ -74,6 +75,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
+    public static String showTime(int time) {
+        int minute = time / 1000 / 60;
+        int second = time / 1000 % 60;
+
+        String strMinute = numToString(minute);
+        String strSecond = numToString(second);
+
+        return strMinute + ":" + strSecond;
+    }
+
+    public static String numToString(int num) {
+        if(num < 10) {
+            return "0" + num;
+        }
+        else {
+            return num + "";
+        }
+    }
+
+    @SuppressLint("HandlerLeak")
     public static Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -83,53 +104,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             int duration = data.getInt("duration");
             seekBar.setMax(duration);
             seekBar.setProgress(currentPosition);
-            String strMinute = null;
-            String strSecond = null;
 
-
-            int minute = duration / 1000 / 60;
-            int second = duration / 1000 % 60;
-
-            if(minute < 10) {
-
-
-                strMinute = "0" + minute;
-            } else {
-
-                strMinute = minute + "";
-            }
-
-            if(second < 10)
-            {
-                strSecond = "0" + second;
-            } else {
-
-                strSecond = second + "";
-            }
-
-            durationTextView.setText(strMinute + ":" + strSecond);
+            //Show Total Length of Music
+            durationTextView.setText(showTime(duration));
 
             //Show Current Position
-            minute = currentPosition / 1000 / 60;
-            second = currentPosition / 1000 % 60;
-
-            if(minute < 10) {
-
-                strMinute = "0" + minute;
-            } else {
-
-                strMinute = minute + "";
-            }
-
-            if(second < 10) {
-
-                strSecond = "0" + second;
-            } else {
-
-                strSecond = second + "";
-            }
-
-            progressTextView.setText(strMinute + ":" + strSecond);
+            progressTextView.setText(showTime(currentPosition));
         }
     };
 
@@ -169,4 +149,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         }
     }
+
 }
