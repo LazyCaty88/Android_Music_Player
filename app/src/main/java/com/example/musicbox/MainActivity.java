@@ -16,9 +16,11 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    private Button playButton;
-    private Button pauseButton;
+    private Button playPauseButton;
+    //private Button pauseButton;
     private Button exitButton;
+    private Button nextButton;
+    private Button lastButton;
 
     private static SeekBar seekBar;
     private static TextView progressTextView;
@@ -34,9 +36,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        playButton = (Button) findViewById(R.id.play_service);
-        pauseButton = (Button) findViewById(R.id.pause_service);
-        exitButton = (Button) findViewById(R.id.exit_service);
+        playPauseButton = (Button) findViewById(R.id.play_or_pause);
+        //pauseButton = (Button) findViewById(R.id.pause);
+        exitButton = (Button) findViewById(R.id.exit);
+        nextButton = (Button) findViewById(R.id.next);
+        lastButton = (Button) findViewById(R.id.last);
+
         seekBar = (SeekBar) findViewById(R.id.sb);
 
         progressTextView = (TextView) findViewById(R.id.tv_progress);
@@ -45,9 +50,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         positionTextView2 = (TextView) findViewById(R.id.tv_position2);
 
         conn = new MusicServiceConn();
-        playButton.setOnClickListener(this);
-        pauseButton.setOnClickListener(this);
+        playPauseButton.setOnClickListener(this);
+        //pauseButton.setOnClickListener(this);
         exitButton.setOnClickListener(this);
+        nextButton.setOnClickListener(this);
+        lastButton.setOnClickListener(this);
 
         //Initialization: bind service and call init();
         intent = new Intent(MainActivity.this, MusicService.class);
@@ -117,16 +124,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.play_service:
-                mi.play();
+            case R.id.play_or_pause:
+                if(mi.isPlaying()) {
+                    mi.pause();
+                }
+                else {
+                    mi.play();
+                }
                 break;
-            case R.id.pause_service:
-                mi.pause();
-                break;
-//            case R.id.init_service:
-//                mi.init();
+//            case R.id.pause:
+//                mi.pause();
 //                break;
-            case R.id.exit_service:
+            case R.id.next:
+                mi.next();
+                break;
+            case R.id.last:
+                mi.last();
+                break;
+            case R.id.exit:
                 unbindService(conn);
                 stopService(intent);
                 finish();
